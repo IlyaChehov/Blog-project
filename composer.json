@@ -6,7 +6,8 @@
             "App\\": "app/"
         },
         "files": [
-            "core/helpers/helpers.php"
+            "core/helpers/helpers.php",
+            "config/variables.php"
         ]
     },
     "require": {

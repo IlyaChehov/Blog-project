@@ -14,3 +14,13 @@ function dump(mixed $data): void
     dump($data);
     die;
 }
+
+function app(): \Core\Core\Application
+{
+    return \Core\Core\Application::getApp();
+}
+
+function view(): \Core\Core\View
+{
+    return app()->getView();
+}
