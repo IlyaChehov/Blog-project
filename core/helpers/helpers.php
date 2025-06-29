@@ -24,3 +24,8 @@ function view(): \Core\Core\View
 {
     return app()->getView();
 }
+
+function getLink(string $path): string
+{
+    return HOST . $path;
+}

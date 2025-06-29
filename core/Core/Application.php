@@ -2,6 +2,7 @@
 
 namespace Core\Core;
 
+use Core\Database\Database;
 use Core\Http\Request;
 use Core\Http\Response;
 use Core\Http\Router;
@@ -12,6 +13,7 @@ class Application
     private Response $response;
     private Router $router;
     private View $view;
+    private Database $database;
     private static Application $app;
     public function __construct()
     {
@@ -19,6 +21,9 @@ class Application
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
         $this->view = new View('main');
+        $this->database = Database::getInstance();
+        $dbConfig = require_once DIR_CONFIG . '/databaseConfig.php';
+        $this->database->getConnect($dbConfig);
 
         Application::$app = $this;
     }
