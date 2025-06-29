@@ -1,0 +1,15 @@
+{
+    "name": "blog/project",
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core/",
+            "App\\": "app/"
+        },
+        "files": [
+            "core/helpers/helpers.php"
+        ]
+    },
+    "require": {
+        "PHP": ">=8.0"
+    }
+}
