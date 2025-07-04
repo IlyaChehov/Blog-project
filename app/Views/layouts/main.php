@@ -61,7 +61,7 @@
         </div>
     </nav>
 </header>
-
+<?php showAlerts() ?>
 <?= view()->getContent() ?>
 
 <footer class="bg-dark text-light py-4 mt-5">

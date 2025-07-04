@@ -7,11 +7,13 @@
         },
         "files": [
             "core/helpers/helpers.php",
+            "core/helpers/shortcut.php",
             "config/variables.php"
         ]
     },
     "require": {
         "PHP": ">=8.0",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "ext-mbstring": "*"
     }
 }

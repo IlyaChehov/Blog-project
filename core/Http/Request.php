@@ -5,6 +5,7 @@ namespace Core\Http;
 class Request
 {
     private string $uri;
+
     public function __construct(string $uri = null)
     {
         $uri = $uri ?? $_SERVER['REQUEST_URI'];
@@ -32,5 +33,18 @@ class Request
     public function isPost(): bool
     {
         return $this->getMethod() === 'POST';
+    }
+
+    public function getData(array $fields = null): array
+    {
+        $data = $this->isPost() ? $_POST : $_GET;
+        if (!empty($fields)) {
+            $data = array_reduce($fields, function ($acc, $el) use ($data) {
+                $acc[$el] = $data[$el] ?? '';
+                return $acc;
+            }, []);
+        }
+
+        return array_map(fn($el) => trim($el), $data);
     }
 }

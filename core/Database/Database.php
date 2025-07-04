@@ -33,4 +33,30 @@ class Database
             die($e->getMessage());
         }
     }
+
+    public function query(string $query, array $params = []): self
+    {
+        try {
+            $this->stmt = $this->connect->prepare($query);
+            $this->stmt->execute($params);
+            return $this;
+        } catch (\PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function findAll(): array
+    {
+        return $this->stmt->fetchAll();
+    }
+
+    public function find(): mixed
+    {
+        return $this->stmt->fetch();
+    }
+
+    public function getInsertId(): string|false
+    {
+        return $this->connect->lastInsertId();
+    }
 }

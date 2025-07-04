@@ -15,8 +15,9 @@
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-person"></i></span>
                                     <input type="text" class="form-control" id="name"
-                                           name="name" placeholder="Введите ваше имя" value="">
+                                           name="name" placeholder="Введите ваше имя" value="<?= old('name') ?>">
                                 </div>
+                                <?= showError('name') ?>
                             </div>
 
                             <div class="mb-4">
@@ -24,8 +25,9 @@
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-envelope"></i></span>
                                     <input type="text" class="form-control" id="email"
-                                           name="email" placeholder="Введите ваш email" value="">
+                                           name="email" placeholder="Введите ваш email" value="<?= old('email') ?>">
                                 </div>
+                                <?= showError('email') ?>
                             </div>
 
                             <div class="mb-4">
@@ -39,6 +41,7 @@
                                         <i class="bi bi-eye"></i>
                                     </button>
                                 </div>
+                                <?= showError('password') ?>
                             </div>
 
                             <div class="mb-4">
@@ -52,6 +55,7 @@
                                         <i class="bi bi-eye"></i>
                                     </button>
                                 </div>
+                                <?= showError('confirmPassword') ?>
                             </div>
 
                             <div class="d-grid gap-2 mt-5">
@@ -71,3 +75,8 @@
         </div>
     </div>
 </main>
+
+<?php
+
+session()->remove('formErrors');
+session()->remove('formValue');

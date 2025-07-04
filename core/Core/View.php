@@ -27,14 +27,19 @@ class View
         if (!file_exists($pathToLayout)) {
             throw new \Exception("File layout not found: {$pathToLayout}");
         }
-//        ob_start();
-//        require_once $pathToLayout;
-//        return ob_get_clean();
+
         require_once $pathToLayout;
     }
 
     public function getContent(): string
     {
         return $this->content;
+    }
+
+    public function renderPartial(string $content, array $data): void
+    {
+        extract($data);
+        $pathToContent = DIR_VIEW . "/{$content}.php";
+        require $pathToContent;
     }
 }

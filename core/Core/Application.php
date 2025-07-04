@@ -6,6 +6,7 @@ use Core\Database\Database;
 use Core\Http\Request;
 use Core\Http\Response;
 use Core\Http\Router;
+use Core\Session\Session;
 
 class Application
 {
@@ -14,6 +15,7 @@ class Application
     private Router $router;
     private View $view;
     private Database $database;
+    private Session $session;
     private static Application $app;
     public function __construct()
     {
@@ -24,6 +26,7 @@ class Application
         $this->database = Database::getInstance();
         $dbConfig = require_once DIR_CONFIG . '/databaseConfig.php';
         $this->database->getConnect($dbConfig);
+        $this->session = new Session();
 
         Application::$app = $this;
     }
@@ -46,5 +49,20 @@ class Application
     public function getView(): View
     {
         return $this->view;
+    }
+
+    public function getSession(): Session
+    {
+        return $this->session;
+    }
+
+    public function getRequest(): Request
+    {
+        return $this->request;
+    }
+
+    public function getResponse(): Response
+    {
+        return $this->response;
     }
 }
