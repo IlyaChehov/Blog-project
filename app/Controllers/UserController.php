@@ -22,5 +22,19 @@ class UserController
             session()->setFlash('error', 'Введите корректные данные.');
             response()->redirect('/register');
         }
+
+        $userData = $model->getAttribute();
+        $userData['password'] = password_hash($userData['password'], PASSWORD_DEFAULT);
+        $model->setAttribute($userData);
+
+        if (!$model->save()) {
+            session()->set('formErrors', $model->getErrors());
+            session()->set('formValue', $model->getAttribute());
+            session()->setFlash('error', 'Произошла ошибка, попробуйте позже.');
+            response()->redirect('/register');
+        }
+
+        session()->setFlash('success', 'Вы успешно зарегистрировались.');
+        response()->redirect('/login');
     }
 }

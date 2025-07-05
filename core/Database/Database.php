@@ -34,14 +34,14 @@ class Database
         }
     }
 
-    public function query(string $query, array $params = []): self
+    public function query(string $query, array $params = []): self|false
     {
         try {
             $this->stmt = $this->connect->prepare($query);
             $this->stmt->execute($params);
             return $this;
         } catch (\PDOException $e) {
-            die($e->getMessage());
+            return false;
         }
     }
 

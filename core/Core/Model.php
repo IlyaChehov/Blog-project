@@ -54,7 +54,6 @@ abstract class Model
         $values = array_map(fn($el) => ":$el", $values);
         $values = implode(', ', $values);
         $query = "INSERT INTO {$this->table} ($columns) VALUES ($values)";
-        dumpDie($this->attribute);
         db()->query($query, $this->attribute);
         return db()->getInsertId();
     }
@@ -62,5 +61,10 @@ abstract class Model
     public function getAttribute(): array
     {
         return $this->attribute;
+    }
+
+    public function setAttribute(array $attribute): void
+    {
+        $this->attribute = $attribute;
     }
 }
