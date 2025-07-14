@@ -1,0 +1,17 @@
+{
+    "name": "blog/project",
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core/",
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ilya Chehov"
+        }
+    ],
+    "require": {
+        "PHP": ">=8.0"
+    }
+}
