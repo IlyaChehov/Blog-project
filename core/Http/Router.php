@@ -2,6 +2,8 @@
 
 namespace Core\Http;
 
+use Exception;
+
 class Router
 {
     private array $routes = [];
@@ -56,6 +58,9 @@ class Router
         return false;
     }
 
+    /**
+     * @throws Exception
+     */
     public function dispatch(): string
     {
         $route = $this->match();
@@ -65,11 +70,11 @@ class Router
         }
 
         if (!class_exists($route['action'][0])) {
-            throw new \Exception("Not found class: {$route['action'][0]}");
+            throw new Exception("Not found class: {$route['action'][0]}");
         }
 
         if (!method_exists($route['action'][0], $route['action'][1])) {
-            throw new \Exception("Not found method: {$route['action'][0]} => {$route['action'][1]}");
+            throw new Exception("Not found method: {$route['action'][0]} => {$route['action'][1]}");
         }
 
         $route['action'][0] = new $route['action'][0];
