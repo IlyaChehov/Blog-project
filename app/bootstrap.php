@@ -16,5 +16,4 @@ $container->bindSingleton(Router::class, function () use ($container) {
 });
 
 ServiceContainer::setContainer($container);
-
 return $container;

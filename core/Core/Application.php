@@ -11,6 +11,7 @@ class Application
     public function __construct(ServiceContainer $container)
     {
         $this->container = $container;
+        $this->registerRoutes();
     }
 
     /**
@@ -19,5 +20,12 @@ class Application
     public function start(): void
     {
         $this->container->getServices(Router::class)->dispatch();
+    }
+
+    private function registerRoutes()
+    {
+        $router = $this->container->getServices(Router::class);
+        $routes = require_once DIR_CONFIG . '/routes.php';
+        $routes($router);
     }
 }
