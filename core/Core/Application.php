@@ -19,7 +19,7 @@ class Application
      */
     public function start(): void
     {
-        $this->container->getServices(Router::class)->dispatch();
+        echo $this->container->getServices(Router::class)->dispatch();
     }
 
     private function registerRoutes()
